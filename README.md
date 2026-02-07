@@ -4,7 +4,7 @@
 
 # Run and deploy your AI Studio app
 
-This contains everything you need to run your app locally.
+This contains everything you need to run your app locally with Next.js (frontend + backend API).
 
 View your app in AI Studio: https://ai.studio/apps/bundled/svg_generator
 
@@ -15,6 +15,16 @@ View your app in AI Studio: https://ai.studio/apps/bundled/svg_generator
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+2. Create `.env.local` (or copy `.env.example`) and set `GEMINI_API_KEY` (server-side only). Optional: set `GEMINI_MODEL` (default: `gemini-2.5-flash`).
 3. Run the app:
    `npm run dev`
+
+## Troubleshooting
+
+If `/api/generate` fails with `TypeError: fetch failed sending request`, the server likely cannot reach Gemini API.
+Try one of these:
+
+1. If you are behind a proxy:
+   - Set `HTTPS_PROXY` (and optionally `HTTP_PROXY`) in `.env.local`
+2. If you are on an IPv6-hostile network:
+   - Set `PREFER_IPV4=1` in `.env.local`
